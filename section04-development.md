@@ -39,4 +39,5 @@ npm install --save-dev
 
 ## Useful Resources
 
+- [Node.js debugging guide](https://nodejs.org/en/docs/guides/debugging-getting-started/)
 - [Node.js debugging in VS Code](https://code.visualstudio.com/docs/nodejs/nodejs-debugging)
