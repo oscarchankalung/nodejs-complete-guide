@@ -7,9 +7,10 @@ const requestHandler = (request, respond) => {
   let users = ["User 1", "User 2"];
 
   if (url === "/") {
+    respond.setHeader("Content-Type", "text/html");
     respond.write(`
       <html>
-        <head><title>Greeting</title></head>
+        <head><title>Assignment 01</title></head>
         <body>
           <h1>Greeting, try create a user</h1>
           <form action="/create-user" method="POST">
@@ -26,7 +27,7 @@ const requestHandler = (request, respond) => {
   if (url === "/users") {
     respond.write(`
       <html>
-        <head><title>Users</title></head>
+        <head><title>Assignment 01</title></head>
         <body>
           <h1>Users</h1><ul>
     `);
@@ -51,9 +52,9 @@ const requestHandler = (request, respond) => {
     return request.on("end", () => {
       const parsedBody = Buffer.concat(body).toString();
       const username = parsedBody.split("=")[1];
-      users = users.push(username);
+      console.log(username);
       respond.statusCode = 302;
-      respond.setHeader("Location", "/users");
+      respond.setHeader("Location", "/");
       return respond.end();
     });
   }
