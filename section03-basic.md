@@ -1,4 +1,4 @@
-### Section 03 Understanding the Basics
+# Section 03 Understanding the Basics
 
 1. How The Web Works
 2. The Node Lifecycle & Event Loop
@@ -14,7 +14,7 @@
 12. Behind the Scenes of Node.js
 13. Using the Node Modules System
 
-#### Node.js Program Lifecycle
+## Node.js Program Lifecycle
 
 ```
 node app.js
@@ -26,20 +26,20 @@ node app.js
 process.exit
 ```
 
-#### Node.js Event Driven Architecture
+## Node.js Event Driven Architecture
 
 - Execute process in operating system which use multi-threading
 - Continue event loop to listen for event callbacks
 - Dispatch tiny actions asynchronously to prevent blocking
 - Come back to callback once previous operation is done
 
-#### Node.js Behind the Scenes
+## Node.js Behind the Scenes
 
-- Performance: single thread, event loop and blocking code
-- Event loop: programm lifecycle
-- Security: global and local scope
+### Performance: single thread, event loop and blocking code
 
 **Single JavaScript Thread** starts **Event Loop** that handles **Event Callbacks** containing fast finishing code. File system operations and other long taking operations are sent to **Worker Pool** that does the heavy lifting by spining up multiple threads. Once the worker is done, it will trigger the callback managed by the event loop.
+
+### Event loop: programm lifecycle
 
 1. **Timer Phase** that execute `setTimeout` and `setInterval` callbacks
 2. **Pending Callback Phase** that exeute I/O, network and long taking callbacks that were deferred
@@ -51,16 +51,18 @@ process.exit
 5. **Close Callack Phase** execute all 'close' event callbacks
 6. Exist process if no remaining event handlers (`refs == 0`)
 
+### Security: global and local scope
+
 By default, callback method in create server gets executed for very new incoming request. Since each function is only scroped to itself and not accessible by the other functions, anything we do to to tge request or response object inside the callback will not be exposed to the request or response objects.
 
-#### Concepts
+## Concepts
 
 - Node.js Event Loop
 - Node.js Streams and Buffers
 - HTTP Request (url, method and headers)
 - HTTP Response
 
-#### Codes
+## Codes
 
 ```
 request.url
@@ -74,3 +76,10 @@ respond.writeHead()
 respond.write()
 respond.end()
 ```
+
+## Useful Resources
+
+- [Official Node.js Docs](https://nodejs.org/en/docs/guides/)
+- [Full Node.js Reference (for all core modules)](https://nodejs.org/dist/latest/docs/api/)
+- [More about the Node.js Event Loop](https://nodejs.org/en/docs/guides/event-loop-timers-and-nexttick)
+- [Blocking and Non-Blocking Code](https://nodejs.org/en/docs/guides/dont-block-the-event-loop/)
