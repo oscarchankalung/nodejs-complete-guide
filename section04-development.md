@@ -35,6 +35,7 @@ npm init
 npm install
 npm install -g
 npm install --save-dev
+npm install --save
 ```
 
 ## Useful Resources
