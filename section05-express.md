@@ -18,9 +18,28 @@
 16. Styling our Pages
 17. Serving Files Statically
 
+## Introduction to Express.js and Middleware
+
+- What is Express.js
+- What is Middleware
+
+## Handling Routes and Request
+
+- use()
+- get()
+- post()
+
+## Code Seperation of Concerns
+
+- `const path = require('path')`
+- `const router = express.Router()`
+- model / view / controller
+- helpers / public / routes / wiews
+
 ## Concepts
 
 - Middleware
+- HTTP Requests
 
 ## Codes
 
@@ -28,6 +47,7 @@
 const path = require("path");
 
 const express = require("express");
+const bodyParser = require("body-parser");
 
 const app = express();
 const router = express.Router();
@@ -40,10 +60,10 @@ router.use((req, res, next) => { next() });
 router.get()
 router.post()
 
-
 app.liste(3000)
 ```
 
 ## Useful Resources
 
 - [expressjs/express: Fast, unopinionated, minimalist web framework for node.](https://github.com/expressjs/express)
+- express document
