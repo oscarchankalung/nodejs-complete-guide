@@ -10,6 +10,7 @@ const adminRoutes = require("./routes/admin");
 const shopRoutes = require("./routes/shop");
 
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static("public"));
 
 app.use("/", (req, res, next) => {
   console.log("This always runs");
