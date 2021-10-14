@@ -1,10 +1,10 @@
 const fs = require("fs");
+const users = ["User 1", "User 2"];
 
 const requestHandler = (request, respond) => {
   // process.exit();
   const url = request.url;
   const method = request.method;
-  let users = ["User 1", "User 2"];
 
   if (url === "/") {
     respond.setHeader("Content-Type", "text/html");
@@ -22,6 +22,7 @@ const requestHandler = (request, respond) => {
         </body>
       </html>
     `);
+    console.log("/", users);
     return respond.end();
   }
   if (url === "/users") {
@@ -31,6 +32,7 @@ const requestHandler = (request, respond) => {
         <body>
           <h1>Users</h1><ul>
     `);
+    console.log("/users", users);
     users.forEach((user) => {
       respond.write(`<li>${user}</li>`);
     });
@@ -52,7 +54,8 @@ const requestHandler = (request, respond) => {
     return request.on("end", () => {
       const parsedBody = Buffer.concat(body).toString();
       const username = parsedBody.split("=")[1];
-      console.log(username);
+      users.push(username);
+      console.log("/create-user", username, users);
       respond.statusCode = 302;
       respond.setHeader("Location", "/");
       return respond.end();
