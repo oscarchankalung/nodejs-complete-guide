@@ -79,15 +79,19 @@ const bodyParser = require("body-parser");
 const app = express();
 const router = express.Router();
 
-app.use((req, res, next) => { next() });
-app.get()
-app.post()
+app.use(express.static("public"));
+
+app.use(routes);
 
 router.use((req, res, next) => { next() });
-router.get()
+router.get((req, res, next) => {
+  res.write()
+  res.send()
+  res.sendFile()
+});
 router.post()
 
-app.liste(3000)
+app.listen(3000)
 ```
 
 ## Useful Resources
