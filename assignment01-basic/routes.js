@@ -1,4 +1,3 @@
-const fs = require("fs");
 const users = ["User 1", "User 2"];
 
 const requestHandler = (request, respond) => {
