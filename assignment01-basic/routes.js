@@ -21,7 +21,6 @@ const requestHandler = (request, respond) => {
         </body>
       </html>
     `);
-    console.log("/", users);
     return respond.end();
   }
   if (url === "/users") {
@@ -31,7 +30,6 @@ const requestHandler = (request, respond) => {
         <body>
           <h1>Users</h1><ul>
     `);
-    console.log("/users", users);
     users.forEach((user) => {
       respond.write(`<li>${user}</li>`);
     });
@@ -54,7 +52,7 @@ const requestHandler = (request, respond) => {
       const parsedBody = Buffer.concat(body).toString();
       const username = parsedBody.split("=")[1];
       users.push(username);
-      console.log("/create-user", username, users);
+      console.log(username);
       respond.statusCode = 302;
       respond.setHeader("Location", "/");
       return respond.end();
