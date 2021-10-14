@@ -1,10 +1,10 @@
 const express = require("express");
 
 const app = express();
-const mainRoutes = require("./routes/main");
+const routes = require("./routes/index");
 
 app.use(express.static("public"));
 
-app.use(mainRoutes);
+app.use(routes);
 
 app.listen(3000);
