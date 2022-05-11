@@ -1,0 +1,11 @@
+h1 {
+  color: orange;
+}
+a {
+  color: black;
+}
+a:hover,
+a:active,
+a.active {
+  color: purple;
+}
