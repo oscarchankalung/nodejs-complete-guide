@@ -1,0 +1,24 @@
+{
+  "name": "section06-dynamic-content",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "author": "Oscar Chan",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^2.0.13"
+  },
+  "dependencies": {
+    "ejs": "^3.1.7",
+    "express": "^4.17.1",
+    "express-handlebars": "3.0",
+    "pug": "^3.0.2"
+  },
+  "nodemonConfig": {
+    "ext": "*"
+  }
+}
