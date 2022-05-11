@@ -2,13 +2,15 @@
 
 1. How The Web Works
 2. The Node Lifecycle & Event Loop
-3. Creating a Node Server //
+3. Creating a Node Server
+<!--  -->
 4. Understanding Requests
 5. Sending Responses
 6. Request & Responses Headers
 7. Routing Requests
 8. Redirecting Requests
-9. Parsing Request Bodies //
+9. Parsing Request Bodies
+<!--  -->
 10. Understanding Event Driven Code Execution
 11. Blocking and Non-Blocking Code
 12. Behind the Scenes of Node.js
@@ -16,14 +18,14 @@
 
 ## Node.js Program Lifecycle
 
-```
-node app.js
+```shell
+$ node app.js
 // start script
 // parse code, register variables and functions
 /* node application create an event loop that
    keeps on running as long as there are
    event listeneres registered */
-process.exit
+$ process.exit
 ```
 
 ## Node.js Event Driven Architecture
@@ -53,7 +55,7 @@ process.exit
 
 ### Security: global and local scope
 
-By default, callback method in create server gets executed for very new incoming request. Since each function is only scroped to itself and not accessible by the other functions, anything we do to to tge request or response object inside the callback will not be exposed to the request or response objects.
+By default, callback method in create server gets executed for very new incoming request. Since each function is only scroped to itself and not accessible by the other functions, anything we do to to the request or response object inside the callback will not be exposed to the request or response objects.
 
 ## Concepts
 
@@ -64,17 +66,17 @@ By default, callback method in create server gets executed for very new incoming
 
 ## Codes
 
-```
-request.url
-request.method
-request.headers
+```js
+request.url;
+request.method;
+request.headers;
 ```
 
-```
-respond.setHeader()
-respond.writeHead()
-respond.write()
-respond.end()
+```js
+respond.setHeader();
+respond.writeHead();
+respond.write();
+respond.end();
 ```
 
 ## Useful Resources

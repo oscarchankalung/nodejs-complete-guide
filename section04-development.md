@@ -4,11 +4,13 @@
 2. Installing Third-Party Packages
 3. Global Features vs Core Modules vs Third-Party Modules
 4. Using Nodemon for Autorestarts
-5. Global and Local npm Packages //
+5. Global and Local npm Packages
+<!--  -->
 6. Understanding different Error Types
 7. Dealing with Syntax Errors
 8. Dealing with Runtime Errors
-9. Dealing with Logical Errors //
+9. Dealing with Logical Errors
+<!--  -->
 10. Using the Debugger
 11. Restarting the Debugger Automatically
 12. Debugging Node.js in Visual Studio Code
@@ -30,12 +32,12 @@
 
 ## Codes
 
-```
-npm init
-npm install
-npm install -g
-npm install --save-dev
-npm install --save
+```shell
+$ npm init
+$ npm install
+$ npm install -g
+$ npm install --save-dev
+$ npm install --save
 ```
 
 ## Useful Resources

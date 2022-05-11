@@ -4,23 +4,26 @@
 2. Installing Express.js
 3. Adding Middleware
 4. How Middleware Works
-5. Behind the Scenes of Express.js //
+5. Behind the Scenes of Express.js
+<!--  -->
 6. Handling Different Routes
 7. Parsing Incoming Requests
-8. Limiting Middleware Execution to POST Requests //
+8. Limiting Middleware Execution to POST Requests
+<!--  -->
 9. Using Express Router
 10. Adding a 404 Error Page
 11. Filtering Paths
 12. Creating HTML Pages
 13. Serving HTML Pages
-14. Returning a 404 Page //
+14. Returning a 404 Page
+<!--  -->
 15. Using a Helper Function for Navigation
 16. Styling our Pages
 17. Serving Files Statically
 
 ## Introduction to Express.js and Middleware
 
-**Express** is a minimal and flexible Node.js web application framework tha provides a lightweight and robust tooling for HTTP servers, making it a great solution for single page applications, websites, hybrids, or public HTTP APIs. Many popular frameworks are based on Express.
+**Express** is a minimal and flexible Node.js web application framework that provides a lightweight and robust tooling for HTTP servers, making it a great solution for single page applications, websites, hybrids, or public HTTP APIs. Many popular frameworks are based on Express.
 
 **Middleware** functions are functions that have access to the request object (`req`), the response object (`res`), and the `next` function in the application's request-response cycle. The `next` function is a function in the Express router which, when invoked, executed the middleware succeeding the current middleware.
 
@@ -37,7 +40,7 @@ Middleware functions can perform the following tasks:
 
 Route definition takes the following structure:
 
-```
+```js
 app.METHOD(PATH, HANDLER)
 ```
 
@@ -70,7 +73,7 @@ Routes and other application-specific logic can live in as many files as you wis
 
 ## Codes
 
-```
+```js
 const path = require("path");
 
 const express = require("express");
