@@ -7,4 +7,11 @@
     <title><%= pageTitle%></title>
     <link rel="stylesheet" href="/main.css" />
   </head>
+
   <body>
+    <header>
+      <a class="<%= path === '/' ? 'active' : '' %>" href="/">Add User</a>
+      <a class="<%= path === '/users' ? 'active' : '' %>" href="/users">Users List</a>
+    </header>
+
+    <main>

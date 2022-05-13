@@ -1,11 +1,8 @@
 <%- include('includes/head.ejs') %>
-    <h1>Add Users Page</h1>
-    <form action="/" method="POST">
-      <div class="form-control">
-        <label for="name">User</label>
-        <input type="text" name="name" id="name" />
-      </div>
-      <button class="btn" type="submit">Add User</button>
-    </form>
-    <button class="btn"><a href="/users"> Go to Users </a></button>
+<h1>Add User</h1>
+<form action="/add-user" method="POST">
+  <label for="username">User</label>
+  <input type="text" name="username" id="username" />
+  <button class="btn" type="submit">Add User</button>
+</form>
 <%- include('includes/end.ejs') %>

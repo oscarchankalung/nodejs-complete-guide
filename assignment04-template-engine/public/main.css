@@ -1,16 +1,6 @@
-h1 {
-  color: black;
-}
-
-.form-control {
-  margin: 1rem 0;
-}
-
-.btn {
-  margin: 1rem 0;
-}
-
 a {
+  margin-right: 1rem;
+}
+a.active {
   color: black;
-  text-decoration: none;
 }

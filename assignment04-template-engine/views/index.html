@@ -4,18 +4,22 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Add Users</title>
+    <title>Add User</title>
     <link rel="stylesheet" href="/main.css" />
   </head>
+
   <body>
-    <h1>Add Users Page</h1>
-    <form action="/" method="POST">
-      <div class="form-control">
-        <label for="name">User</label>
-        <input type="text" name="name" id="name" />
-      </div>
-      <button class="btn" type="submit">Add User</button>
-    </form>
-    <button class="btn"><a href="/users"> Go to Users </a></button>
+    <header>
+      <a href="/">Add User</a>
+      <a href="/users">Users List</a>
+    </header>
+    <main>
+      <h1>Add User</h1>
+      <form action="/add-user" method="POST">
+        <label for="username">User</label>
+        <input type="text" name="username" id="username" />
+        <button class="btn" type="submit">Add User</button>
+      </form>
+    </main>
   </body>
 </html>
