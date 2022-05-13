@@ -1,0 +1,12 @@
+extends layouts/main-layout.pug
+
+block content
+    h1 Users Page
+    if users.length > 0
+      ul
+        each user in users
+          li #{user.name}
+    else
+      p No Users
+    a(href="/")
+      button.btn Go to Add User

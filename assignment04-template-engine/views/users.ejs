@@ -1,0 +1,13 @@
+<%- include('includes/head.ejs') %>
+    <h1>Users Page</h1>
+    <% if (users.length > 0) { %>
+      <ul>
+        <% for (let user of users) {%>
+        <li><%= user.name%></li>
+        <% } %>
+      </ul>
+    <% } else { %>
+      <p>No Users</p>
+    <% } %>
+    <a href="/"><button class="btn">Go to Add User</button></a>
+<%- include('includes/end.ejs') %>

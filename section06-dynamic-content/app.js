@@ -8,6 +8,9 @@ const rootDir = require("./util/path");
 
 const app = express();
 
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static("public"));
+
 app.engine(
   "hbs",
   expressHbs({
@@ -21,9 +24,6 @@ app.set("views", "views");
 
 const adminData = require("./routes/admin");
 const shopRoutes = require("./routes/shop");
-
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static("public"));
 
 app.use("/admin", adminData.routes);
 app.use(shopRoutes);

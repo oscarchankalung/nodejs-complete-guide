@@ -1,0 +1,11 @@
+<h1>Users Page</h1>
+{{#if hasUsers}}
+  <ul>
+    {{#each users}}
+      <li>{{this.name}}</li>
+    {{/each}}
+  </ul>
+{{else}}
+  <p>No Users</p>
+{{/if}}
+<a href="/"><button class="btn">Go to Add User</button></a>
