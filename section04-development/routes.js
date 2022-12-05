@@ -18,6 +18,7 @@ const requestHandler = (request, respond) => {
     `);
     return respond.end();
   }
+
   if (url === "/message" && method === "POST") {
     const body = [];
     request.on("data", (chunk) => {
@@ -33,6 +34,7 @@ const requestHandler = (request, respond) => {
       });
     });
   }
+  
   respond.setHeader("Content-Type", "text/html");
   respond.write(`
     <html> 
