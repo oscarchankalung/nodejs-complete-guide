@@ -20,11 +20,11 @@
 
 ```shell
 $ node app.js
-// start script
-// parse code, register variables and functions
+/* start script */
+/* parse code, register variables and functions */
 /* node application create an event loop that
    keeps on running as long as there are
-   event listeneres registered */
+   event listeners registered */
 $ process.exit
 ```
 
@@ -51,11 +51,11 @@ $ process.exit
    - Jump to Timer phase and execute timer callbacks if exist
 4. **Check Phase** that execute `setImmediate` callbacks
 5. **Close Callack Phase** execute all 'close' event callbacks
-6. Exist process if no remaining event handlers (`refs == 0`)
+6. **Exit Process** if no remaining event handlers (`refs == 0`)
 
 ### Security: global and local scope
 
-By default, callback method in create server gets executed for very new incoming request. Since each function is only scroped to itself and not accessible by the other functions, anything we do to to the request or response object inside the callback will not be exposed to the request or response objects.
+By default, callback method created in server gets executed for every new incoming request. Since each function is only scroped to itself and not accessible by the other functions, anything we do to to the request or response object inside the callback will not be exposed to the request or response objects.
 
 ## Concepts
 
