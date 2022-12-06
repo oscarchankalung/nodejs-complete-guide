@@ -1,10 +1,13 @@
 const Product = require("../models/product");
 
 exports.getIndex = (req, res, next) => {
-  res.render("shop/index", {
-    pageTitle: "Shop",
-    path: "/",
-    productCSS: true,
+  Product.fetchAll(products => {
+    res.render("shop/index", {
+      pageTitle: "Shop",
+      path: "/",
+      products: products,
+      productCSS: true,
+    });
   });
 };
 
