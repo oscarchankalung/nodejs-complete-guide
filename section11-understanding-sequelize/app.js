@@ -11,16 +11,6 @@ app.use(express.static(path.join(__dirname, "public")));
 app.set("view engine", "ejs");
 app.set("views", "views");
 
-const db = require("./util/database");
-
-db.execute("SELECT * FROM products")
-  .then(result => {
-    console.log(result[0], result[1]);
-  })
-  .catch(err => {
-    console.log(err);
-  });
-
 const adminRoutes = require("./routes/admin");
 const shopRoutes = require("./routes/shop");
 const errorController = require("./controllers/error");
