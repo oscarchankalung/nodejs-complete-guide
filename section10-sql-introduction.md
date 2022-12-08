@@ -68,8 +68,35 @@ In **vertical scaling**, we increase the capacity of exisitng servers by adding 
 
 ## Codes
 
+```js
+const mysql = require("mysql2");
+
+const pool = mysql.createPool({
+  host: "localhost",
+  user: "root",
+  database: "node-complete",
+  password: "ddJZgjRLy987x7n23.2_",
+});
+
+module.exports = pool.promise();
 ```
 
+```js
+const db = require("../util/database");
+
+module.exports = class Product {
+  constructor(id, title, imageUrl, description, price) {
+    this.id = id;
+    this.title = title;
+    this.imageUrl = imageUrl;
+    this.description = description;
+    this.price = price;
+  }
+  
+  static findById(id) {
+    return db.execute("SELECT * FROM products WHERE products.id = ?", [id]);
+  }
+};
 ```
 
 ## Useful Resources
