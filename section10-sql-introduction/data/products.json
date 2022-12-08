@@ -1,0 +1,9 @@
+[
+  {
+    "title": "A Book",
+    "imageUrl": "https://litstack.com/wp-content/uploads/2013/02/books1.jpg",
+    "description": "This is a book",
+    "price": 20.11,
+    "id": "12345"
+  }
+]
