@@ -22,12 +22,8 @@
 ## Concepts
 
 - Dynamic Routes
-
-## Codes
-
-```
-
-```
+- Complusory Parameter
+- Optional Query
 
 ## Useful Resources
 
