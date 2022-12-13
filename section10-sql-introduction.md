@@ -50,7 +50,7 @@ In **vertical scaling**, we increase the capacity of exisitng servers by adding 
 ## Comparsion
 
 |                    | SQL                                         | NoSQL                                      |
-|--------------------|---------------------------------------------|--------------------------------------------|
+|:-------------------|:--------------------------------------------|:-------------------------------------------|
 | Schema             | True                                        | False                                      |
 | Relation           | Necessary                                   | No or very few                             |
 | Sharing            | Distributed across multiple tables          | Duplicated across different collections    |
