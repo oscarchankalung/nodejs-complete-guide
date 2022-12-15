@@ -45,4 +45,4 @@ app.use((req, res, next) => {
 
 ## Useful Resources
 
-- [Pug Documentation](https://pugjs.org/api/getting-started.html)
+- [Pug Docs](https://pugjs.org/api/getting-started.html)
