@@ -63,14 +63,49 @@ However, other than **embedded documents**, you can still depict relations with 
 
 ## Concepts
 
-- ?
+- Operations
+  - CRUD
+  - Aggregation
+- Operators
+  - Query and Projection
+  - Field and Array Update
+  - Aggregation
+- Parameters
+  - Filter
+  - Update
+  - Options
+    - upsert
+    - arrayFilters
 
 ## Codes
 
-```
+```js
+const { getDb } = require("../util/database");
+const db = getDb();
 
+// products
+db.collection("products").updateOne(filter, updatedProduct);
+db.collection("products").insertOne(this);
+db.collection("products").find().toArray();
+db.collection("products").find({ _id: new mongodb.ObjectId(id) }).next();
+db.collection("products").deleteOne({ _id: new mongodb.ObjectId(id) });
+
+// users
+db.collection("users").insertOne(this);
+db.collection("users").find({ _id: new mongodb.ObjectId(id) }).next()
+
+// users.cart
+db.collection("products").find({ _id: { $in: productIds } }).toArray();
+db.collection("users").updateOne(filter, updatedUser);
+
+// orders
+db.collection("orders").insertOne(order);
+db.collection("users").updateOne(filter, updatedUser);
+db.collection("orders").find({ "user._id": this._id }).toArray()
 ```
 
 ## Useful Resources
 
-- [Link](URL)
+- [MongoDB documentation](https://www.mongodb.com/docs/manual/)
+- [Academind - SQL vs NoSQL](https://academind.com/tutorials/sql-vs-nosql)
+- [MongoDB NodeJS Driver documentation](https://mongodb.github.io/node-mongodb-native/4.12/index.html)

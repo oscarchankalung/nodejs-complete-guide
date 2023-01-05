@@ -1,30 +1,34 @@
-const { MongoClient } = require("mongodb");
+const { MongoClient, ServerApiVersion } = require("mongodb");
 
-let _database;
+let _db;
 
 const connectMongodb = async callback => {
   const password = "byo8A220Al1sTtnS";
   const uri = `mongodb+srv://oscarchankalung:${password}@cluster0.vccxw.mongodb.net/shop?retryWrites=true&w=majority`;
-  const client = new MongoClient(uri);
+  const client = new MongoClient(uri, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    serverApi: ServerApiVersion.v1,
+  });
 
-  try {
-    await client.connect();
-    _database = client.db();
-    callback();
-  } catch (err) {
-    console.log(err);
-  } finally {
-    await client.close();
-  }
+  client
+    .connect()
+    .then(() => {
+      _db = client.db();
+      callback();
+    })
+    .catch(err => {
+      console.log(err);
+    });
 };
 
-const getDatabase = () => {
-  if (_database) {
-    return _database;
+const getDb = () => {
+  if (_db) {
+    return _db;
   } else {
     throw "No database found!";
   }
 };
 
 exports.connectMongodb = connectMongodb;
-exports.getDatabase = getDatabase;
+exports.getDb = getDb;
