@@ -45,6 +45,21 @@ app.use(errorController.get404);
 
 const { connectMongodb } = require("./util/database");
 
-connectMongodb(() => {
-  app.listen(3000);
-});
+connectMongodb(() => null);
+
+// mongoose
+
+const mongoose = require("mongoose");
+
+const password = "byo8A220Al1sTtnS";
+const uri = `mongodb+srv://oscarchankalung:${password}@cluster0.vccxw.mongodb.net/shop?retryWrites=true&w=majority`;
+
+mongoose.set("strictQuery", true);
+mongoose
+  .connect(uri)
+  .then(() => {
+    app.listen(3000);
+  })
+  .catch(err => {
+    console.log({ err });
+  });
