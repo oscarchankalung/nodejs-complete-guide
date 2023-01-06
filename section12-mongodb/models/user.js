@@ -3,11 +3,11 @@ const mongodb = require("mongodb");
 const { getDb } = require("../util/database");
 
 class User {
-  constructor(username, email, cart, id) {
+  constructor(id, username, email, cart) {
+    this._id = id ? new mongodb.ObjectId(id) : null;
     this.name = username;
     this.email = email;
     this.cart = cart ?? { items: [] };
-    this._id = id ? new mongodb.ObjectId(id) : null;
   }
 
   save() {
@@ -17,7 +17,8 @@ class User {
     if (this._id) {
       const filter = { _id: this._id };
       const updatedUser = { $set: this };
-      dbOp = db.collection("users").updateOne(filter, updatedUser);
+      const option = { upsert: true };
+      dbOp = db.collection("users").updateOne(filter, updatedUser, option);
     } else {
       dbOp = db.collection("users").insertOne(this);
     }
@@ -32,20 +33,41 @@ class User {
   }
 
   getCart() {
+    // merge cartItems with products
+    // update cartItems by removing deleted products
+
     const db = getDb();
-    const productIds = this.cart.items.map(item => item.productId);
+    const cartItemProductIds = this.cart.items.map(item => item.productId);
+    let mergedCartProducts = [];
+    let updatedCartItems = [];
 
     return db
       .collection("products")
-      .find({ _id: { $in: productIds } })
+      .find({ _id: { $in: cartItemProductIds } })
       .toArray()
       .then(products => {
         return products.map(product => {
-          const cartProduct = this.cart.items.find(item => {
-            return item.productId.toString() === product._id.toString();
+          const cartItem = this.cart.items.find(item => {
+            const cartItemProductId = item.productId.toString();
+            const productId = product._id.toString();
+            return cartItemProductId === productId;
           });
-          return { ...product, quantity: cartProduct.quantity };
+          const cartProduct = { ...product, quantity: cartItem.quantity };
+
+          mergedCartProducts.push(cartProduct);
+          updatedCartItems.push(cartItem);
+          return cartProduct;
         });
+      })
+      .then(products => {
+        if (cartItemProductIds.length > updatedCartItems.length) {
+          const filter = { _id: this._id };
+          const updatedUser = { $set: { "cart.items": updatedCartItems } };
+          return db.collection("users").updateOne(filter, updatedUser);
+        }
+      })
+      .then(result => {
+        return mergedCartProducts;
       })
       .catch(err => {
         console.log(err);
@@ -92,10 +114,7 @@ class User {
       .then(products => {
         const order = {
           items: products,
-          user: {
-            _id: this._id,
-            name: this.name,
-          },
+          user: { _id: this._id, name: this.name },
         };
         return db.collection("orders").insertOne(order);
       })

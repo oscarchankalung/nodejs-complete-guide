@@ -55,7 +55,6 @@ exports.getCart = (req, res, next) => {
   user
     .getCart()
     .then(products => {
-      console.log(products);
       let totalPrice = 0;
 
       products.forEach(product => {
