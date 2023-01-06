@@ -44,7 +44,7 @@ The name MongoDB stems from the word **humongous**. It was built for large scale
 - **Collections**: Users, Orders
 - **Documents**: `{ name: 'Max', age: 29 }`, `{ name: 'Manu' }`
 
-MongoDB uses json (javascript object notation) to store data in collections. The javascript objects can have nested (embedded) object and array with them. With such flexibilty and structure, relations are also managed differently from SQL.
+**MongoDB** uses json (javascript object notation) to store data in collections. The javascript objects can have nested (embedded) object and array with them. With such flexibilty and structure, relations are also managed differently from SQL.
 
 ### Relations
 

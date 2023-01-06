@@ -31,7 +31,7 @@
 
 ## Sequelize
 
-Sequelize is a third party package that serves as object relational mapping library. Simply speaking, it automatically translates JavaScript objects into SQL code.
+**Sequelize** is a third party package that serves as object relational mapping (ORM) library. Simply speaking, it automatically translates JavaScript objects into SQL code.
 
 | Object       | Code                        |
 |:-------------|:--------------------------- |
