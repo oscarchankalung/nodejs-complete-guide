@@ -17,11 +17,11 @@ exports.postAddProduct = (req, res, next) => {
   const price = parseFloat(req.body.price);
   const description = req.body.description;
   const product = new Product(
+    null,
     title,
     price,
     imageUrl,
     description,
-    null,
     user._id,
   );
 
@@ -86,11 +86,11 @@ exports.postEditProduct = (req, res, next) => {
   const updatedPrice = parseFloat(req.body.price);
   const updatedDescription = req.body.description;
   const updatedProduct = new Product(
+    productId,
     updatedTitle,
     updatedPrice,
     updatedImageUrl,
     updatedDescription,
-    productId,
   );
 
   updatedProduct
