@@ -23,9 +23,18 @@
 17. Clearing the Cart After Storing an Order
 18. Getting & Displaying the Orders
 
+## What is Mongoose?
+
+**Mongoose** is an object document mapping (ODM) library. It's similar to **Sequelize** which is an object relational mapping (ORM) library with the difference that MongoDB is a document database.
+
+The idea is the same. We want to map our javascript object to a document in a collection and generate query automatically. The core concepts are we work with schemas and models where we define how our data should look like. Then we create instances where we instantiate our models. Once we get the blueprints setup, we can run queries created behind the scene.
+
 ## Concepts
 
-- Node Package Manager
+- Schemas & Models
+- Instances
+- Queries
+
 
 ## Codes
 
