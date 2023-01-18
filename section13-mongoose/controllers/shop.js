@@ -53,18 +53,19 @@ exports.getCart = (req, res, next) => {
   const user = req.user;
 
   user
-    .getCart()
-    .then(products => {
+    .populate("cart.items.product")
+    .then(user => {
+      const cartItems = user.cart.items;
       let totalPrice = 0;
 
-      products.forEach(product => {
-        totalPrice += product.price * product.quantity;
+      cartItems.forEach(cartItem => {
+        totalPrice += cartItem.product.price * cartItem.quantity;
       });
 
       res.render("shop/cart", {
         pageTitle: "Your Cart",
         path: "/cart",
-        products: products,
+        cartItems: cartItems,
         totalPrice: totalPrice,
       });
     })
