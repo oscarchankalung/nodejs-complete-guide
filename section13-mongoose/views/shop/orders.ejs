@@ -13,8 +13,8 @@
             <li class="orders__item">
               <h1>Order # <%= order._id %></h1>
               <ul class="orders__products">
-                <% for (let product of order.items) { %>
-                  <li class="orders__products-item"><%= product.title %> (<%= product.quantity %>)</li>
+                <% for (let orderItem of order.items) { %>
+                  <li class="orders__products-item"><%= orderItem.product.title %> (<%= orderItem.quantity %>)</li>
                 <% } %>
               </ul>
             </li> 
