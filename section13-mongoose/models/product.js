@@ -20,7 +20,8 @@ const schema = new Schema({
     required: true,
   },
   userId: {
-    type: Object,
+    type: Schema.Types.ObjectId,
+    ref: "User",
     required: true,
   },
 });
