@@ -17,6 +17,7 @@ app.set("views", "views");
 const adminRoutes = require("./routes/admin");
 const shopRoutes = require("./routes/shop");
 const errorController = require("./controllers/error");
+const mongodb = require("mongodb");
 
 const User = require("./models/user");
 const defaultUserId = "000000000000000000000001";
@@ -25,10 +26,15 @@ app.use((req, res, next) => {
   User.findById(defaultUserId)
     .then(user => {
       if (!user) {
-        req.user = new User(defaultUserId, "Oscar", "test@test.com", null);
+        req.user = new User({
+          _id: new mongodb.ObjectId(defaultUserId),
+          name: "Oscar",
+          email: "test@test.com",
+          cart: { items: [] },
+        });
         req.user.save();
       } else {
-        req.user = new User(user._id, user.name, user.email, user.cart);
+        req.user = user;
       }
       next();
     })
