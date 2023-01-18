@@ -35,13 +35,6 @@ The idea is the same. We want to map our javascript object to a document in a co
 - Instances
 - Queries
 
-
-## Codes
-
-```
-
-```
-
 ## Useful Resources
 
 - [Mongoose Documentation](https://mongoosejs.com/docs/)
