@@ -36,7 +36,7 @@ exports.postAddProduct = (req, res, next) => {
 };
 
 exports.getProducts = (req, res, next) => {
-  Product.fetchAll()
+  Product.find()
     .then(products => {
       res.render("admin/product-list", {
         pageTitle: "Admin Products",
@@ -84,16 +84,15 @@ exports.postEditProduct = (req, res, next) => {
   const updatedImageUrl = req.body.imageUrl;
   const updatedPrice = parseFloat(req.body.price);
   const updatedDescription = req.body.description;
-  const updatedProduct = new Product(
-    productId,
-    updatedTitle,
-    updatedPrice,
-    updatedImageUrl,
-    updatedDescription,
-  );
 
-  updatedProduct
-    .save()
+  Product.findById(productId)
+    .then(product => {
+      product.title = updatedTitle;
+      product.imageUrl = updatedImageUrl;
+      product.price = updatedPrice;
+      product.description = updatedDescription;
+      return product.save();
+    })
     .then(product => {
       console.log(`Updated Product ${product._id.toString()}`);
       res.redirect("/admin/products");
