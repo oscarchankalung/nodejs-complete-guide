@@ -47,12 +47,6 @@ app.use("/admin", adminRoutes);
 app.use(shopRoutes);
 app.use(errorController.get404);
 
-// mongodb
-
-const { connectMongodb } = require("./util/database");
-
-connectMongodb(() => null);
-
 // mongoose
 
 const mongoose = require("mongoose");
