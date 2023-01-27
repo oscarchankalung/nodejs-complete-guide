@@ -3,11 +3,13 @@
 const express = require("express");
 const path = require("path");
 const bodyParser = require("body-parser");
+const cookieParser = require("cookie-parser");
 
 const app = express();
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
+app.use(cookieParser());
 
 app.set("view engine", "ejs");
 app.set("views", "views");
@@ -48,12 +50,6 @@ app.use(authRoutes);
 app.use("/admin", adminRoutes);
 app.use(shopRoutes);
 app.use(errorController.get404);
-
-// mongodb
-
-const { connectMongodb } = require("./util/database");
-
-connectMongodb(() => null);
 
 // mongoose
 

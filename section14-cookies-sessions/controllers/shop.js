@@ -2,11 +2,14 @@ const Product = require("../models/product");
 const Order = require("../models/order");
 
 exports.getIndex = (req, res, next) => {
+  const isLoggedIn = req.cookies.isLoggedIn;
+
   Product.find()
     .then(products => {
       res.render("shop/index", {
         pageTitle: "Shop",
         path: "/",
+        isLoggedIn: isLoggedIn,
         products: products,
         hasProducts: products.length > 0,
         productCSS: true,
@@ -18,11 +21,14 @@ exports.getIndex = (req, res, next) => {
 };
 
 exports.getProducts = (req, res, next) => {
+  const isLoggedIn = req.cookies.isLoggedIn;
+
   Product.find()
     .then(products => {
       res.render("shop/product-list", {
         pageTitle: "Products",
         path: "/products",
+        isLoggedIn: isLoggedIn,
         products: products,
         hasProducts: products.length > 0,
         productCSS: true,
@@ -34,6 +40,7 @@ exports.getProducts = (req, res, next) => {
 };
 
 exports.getProduct = (req, res, next) => {
+  const isLoggedIn = req.cookies.isLoggedIn;
   const productId = req.params.productId;
 
   Product.findById(productId)
@@ -41,6 +48,7 @@ exports.getProduct = (req, res, next) => {
       res.render(`shop/product-detail`, {
         pageTitle: `Product ${product.title}`,
         path: `shop/products/${productId}`,
+        isLoggedIn: isLoggedIn,
         product: product,
         productCSS: true,
       });
@@ -51,6 +59,7 @@ exports.getProduct = (req, res, next) => {
 };
 
 exports.getCart = (req, res, next) => {
+  const isLoggedIn = req.cookies.isLoggedIn;
   const user = req.user;
 
   user
@@ -66,6 +75,7 @@ exports.getCart = (req, res, next) => {
       res.render("shop/cart", {
         pageTitle: "Your Cart",
         path: "/cart",
+        isLoggedIn: isLoggedIn,
         cartItems: cartItems,
         totalPrice: totalPrice,
       });
@@ -104,6 +114,7 @@ exports.postCartDeleteItem = (req, res, next) => {
 };
 
 exports.getOrders = (req, res, next) => {
+  const isLoggedIn = req.cookies.isLoggedIn;
   const user = req.user;
 
   Order.find({ user: user._id })
@@ -111,6 +122,7 @@ exports.getOrders = (req, res, next) => {
       res.render("shop/orders", {
         pageTitle: "Your Orders",
         path: "/orders",
+        isLoggedIn: isLoggedIn,
         orders: orders,
       });
     })
