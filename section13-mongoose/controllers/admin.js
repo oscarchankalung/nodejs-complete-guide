@@ -99,7 +99,9 @@ exports.postEditProduct = (req, res, next) => {
       console.log(`Updated Product ${product._id.toString()}`);
       res.redirect("/admin/products");
     })
-    .catch(err => console.log(err));
+    .catch(err => {
+      console.log(err);
+    });
 };
 
 exports.postDeleteProduct = (req, res, next) => {
@@ -110,5 +112,7 @@ exports.postDeleteProduct = (req, res, next) => {
       console.log(`Deleted Product ${result._id.toString()}`);
       res.redirect("/admin/products");
     })
-    .catch(err => console.log(err));
+    .catch(err => {
+      console.log(err);
+    });
 };
