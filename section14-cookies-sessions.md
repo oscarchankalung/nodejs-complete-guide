@@ -20,6 +20,24 @@
 15. Two Tiny Improvements
 16. Code Adjustments
 
+## Topics
+
+- Why request driven login solution doesn't work?
+  - use
+  - request
+  - global variable
+- What is cookies?
+  - configuration
+  - third-party package: cookie-parser
+  - storage: client, browser
+- What is sessions?
+  - configuration
+  - third-party package: express-session
+  - storage: server, database
+- Summary
+  - persists across requests
+  - but not across users
+
 ## Concepts
 
 - Cookie
@@ -27,8 +45,28 @@
 
 ## Codes
 
-```
+```js
+const cookieParser = require("cookie-parser");
+const session = require("express-session");
+const MongoDBStore = require("connect-mongodb-session")(session);
 
+const MONGODB_PASSWORD = "byo8A220Al1sTtnS";
+const MONGODB_URI = `mongodb+srv://oscarchankalung:${MONGODB_PASSWORD}@cluster0.vccxw.mongodb.net/shop`;
+
+const store = new MongoDBStore({
+  uri: MONGODB_URI,
+  collection: "sessions",
+});
+
+app.use(cookieParser());
+app.use(
+  session({
+    secret: "12345678",
+    resave: false,
+    saveUninitialized: false,
+    store: store,
+  }),
+);
 ```
 
 ## Useful Resources

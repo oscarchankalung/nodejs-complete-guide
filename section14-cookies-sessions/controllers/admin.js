@@ -1,7 +1,7 @@
 const Product = require("../models/product");
 
 exports.getAddProduct = (req, res, next) => {
-  const isLoggedIn = req.cookies.isLoggedIn;
+  const isLoggedIn = req.session.isLoggedIn;
   const isEditMode = req.query.edit;
 
   res.render("admin/edit-product", {
@@ -13,7 +13,7 @@ exports.getAddProduct = (req, res, next) => {
 };
 
 exports.postAddProduct = (req, res, next) => {
-  const user = req.user;
+  const user = req.session.user;
   const title = req.body.title;
   const imageUrl = req.body.imageUrl;
   const price = parseFloat(req.body.price);
@@ -38,7 +38,7 @@ exports.postAddProduct = (req, res, next) => {
 };
 
 exports.getProducts = (req, res, next) => {
-  const isLoggedIn = req.cookies.isLoggedIn;
+  const isLoggedIn = req.session.isLoggedIn;
 
   Product.find()
     // .select("title price -_id")
@@ -60,7 +60,7 @@ exports.getProducts = (req, res, next) => {
 };
 
 exports.getEditProduct = (req, res, next) => {
-  const isLoggedIn = req.cookies.isLoggedIn;
+  const isLoggedIn = req.session.isLoggedIn;
   const isEditMode = req.query.edit;
   const productId = req.params.productId;
 
@@ -106,7 +106,9 @@ exports.postEditProduct = (req, res, next) => {
       console.log(`Updated Product ${product._id.toString()}`);
       res.redirect("/admin/products");
     })
-    .catch(err => console.log(err));
+    .catch(err => {
+      console.log(err);
+    });
 };
 
 exports.postDeleteProduct = (req, res, next) => {
@@ -117,5 +119,7 @@ exports.postDeleteProduct = (req, res, next) => {
       console.log(`Deleted Product ${result._id.toString()}`);
       res.redirect("/admin/products");
     })
-    .catch(err => console.log(err));
+    .catch(err => {
+      console.log(err);
+    });
 };

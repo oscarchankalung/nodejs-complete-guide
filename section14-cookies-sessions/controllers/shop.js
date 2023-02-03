@@ -2,7 +2,7 @@ const Product = require("../models/product");
 const Order = require("../models/order");
 
 exports.getIndex = (req, res, next) => {
-  const isLoggedIn = req.cookies.isLoggedIn;
+  const isLoggedIn = req.session.isLoggedIn;
 
   Product.find()
     .then(products => {
@@ -21,7 +21,7 @@ exports.getIndex = (req, res, next) => {
 };
 
 exports.getProducts = (req, res, next) => {
-  const isLoggedIn = req.cookies.isLoggedIn;
+  const isLoggedIn = req.session.isLoggedIn;
 
   Product.find()
     .then(products => {
@@ -40,7 +40,7 @@ exports.getProducts = (req, res, next) => {
 };
 
 exports.getProduct = (req, res, next) => {
-  const isLoggedIn = req.cookies.isLoggedIn;
+  const isLoggedIn = req.session.isLoggedIn;
   const productId = req.params.productId;
 
   Product.findById(productId)
@@ -59,8 +59,8 @@ exports.getProduct = (req, res, next) => {
 };
 
 exports.getCart = (req, res, next) => {
-  const isLoggedIn = req.cookies.isLoggedIn;
-  const user = req.user;
+  const isLoggedIn = req.session.isLoggedIn;
+  const user = req.session.user;
 
   user
     .populate("cart.items.product")
@@ -86,7 +86,7 @@ exports.getCart = (req, res, next) => {
 };
 
 exports.postCart = (req, res, next) => {
-  const user = req.user;
+  const user = req.session.user;
   const productId = req.body.productId;
 
   user
@@ -100,7 +100,7 @@ exports.postCart = (req, res, next) => {
 };
 
 exports.postCartDeleteItem = (req, res, next) => {
-  const user = req.user;
+  const user = req.session.user;
   const productId = req.body.productId;
 
   user
@@ -114,8 +114,8 @@ exports.postCartDeleteItem = (req, res, next) => {
 };
 
 exports.getOrders = (req, res, next) => {
-  const isLoggedIn = req.cookies.isLoggedIn;
-  const user = req.user;
+  const isLoggedIn = req.session.isLoggedIn;
+  const user = req.session.user;
 
   Order.find({ user: user._id })
     .then(orders => {
@@ -132,7 +132,7 @@ exports.getOrders = (req, res, next) => {
 };
 
 exports.postOrder = (req, res, next) => {
-  const user = req.user;
+  const user = req.session.user;
 
   user
     .populate("cart.items.product")

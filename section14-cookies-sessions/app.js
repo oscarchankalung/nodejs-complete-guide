@@ -4,15 +4,8 @@ const express = require("express");
 const path = require("path");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
-
-const app = express();
-
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, "public")));
-app.use(cookieParser());
-
-app.set("view engine", "ejs");
-app.set("views", "views");
+const session = require("express-session");
+const MongoDBStore = require("connect-mongodb-session")(session);
 
 // express route
 
@@ -20,31 +13,44 @@ const authRoutes = require("./routes/auth");
 const adminRoutes = require("./routes/admin");
 const shopRoutes = require("./routes/shop");
 const errorController = require("./controllers/error");
-const mongodb = require("mongodb");
 
-const User = require("./models/user");
-const defaultUserId = "000000000000000000000001";
+// mongoose
 
-app.use((req, res, next) => {
-  User.findById(defaultUserId)
-    .then(user => {
-      if (!user) {
-        req.user = new User({
-          _id: new mongodb.ObjectId(defaultUserId),
-          name: "Oscar",
-          email: "test@test.com",
-          cart: { items: [] },
-        });
-        req.user.save();
-      } else {
-        req.user = user;
-      }
-      next();
-    })
-    .catch(err => {
-      console.log(err);
-    });
+const mongoose = require("mongoose");
+const MONGODB_PASSWORD = "byo8A220Al1sTtnS";
+const MONGODB_URI = `mongodb+srv://oscarchankalung:${MONGODB_PASSWORD}@cluster0.vccxw.mongodb.net/shop`;
+
+// express app
+
+const app = express();
+const store = new MongoDBStore({
+  uri: MONGODB_URI,
+  collection: "sessions",
 });
+const cookie = {
+  maxAge: 600000,
+  secure: true,
+  httpOnly: true,
+  sameSite: "lax",
+};
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, "public")));
+app.use(cookieParser());
+app.use(
+  session({
+    secret: "12345678",
+    resave: false,
+    saveUninitialized: false,
+    store: store,
+    cookie: cookie,
+  }),
+);
+
+app.set("view engine", "ejs");
+app.set("views", "views");
+
+// express route
 
 app.use(authRoutes);
 app.use("/admin", adminRoutes);
@@ -53,14 +59,9 @@ app.use(errorController.get404);
 
 // mongoose
 
-const mongoose = require("mongoose");
-
-const password = "byo8A220Al1sTtnS";
-const uri = `mongodb+srv://oscarchankalung:${password}@cluster0.vccxw.mongodb.net/shop?retryWrites=true&w=majority`;
-
 mongoose.set("strictQuery", true);
 mongoose
-  .connect(uri)
+  .connect(MONGODB_URI)
   .then(() => {
     app.listen(3000);
   })
